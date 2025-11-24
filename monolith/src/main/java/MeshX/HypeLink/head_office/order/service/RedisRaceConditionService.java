@@ -25,7 +25,7 @@ public class RedisRaceConditionService {
     private final ItemDetailJpaRepositoryVerify itemDetailRepository;
 
     @Transactional
-    public void decreaseHeadItemDetailStock(PurchaseOrderCreateReq dto) {
+    public void decreaseHeadItemDetailStock(PurchaseOrderCreateReq dto) throws PurchaseOrderException {
         RLock lock = getRLockWithItemDetailCode(dto.getItemDetailCode());
 
         TryCatchTemplate.withLock(lock, 3, 10, () -> {
@@ -38,11 +38,12 @@ public class RedisRaceConditionService {
             log.info("재고 차감 완료 (남은 재고: {})", itemDetail.getStock());
         }, e -> {
             log.error("재고 차감 실패 - {}", e.getMessage(), e);
+            throw new PurchaseOrderException(UNDER_ZERO);
         });
     }
 
     @Transactional
-    public void increaseHeadItemDetailStock(PurchaseOrder purchaseOrder) {
+    public void increaseHeadItemDetailStock(PurchaseOrder purchaseOrder) throws PurchaseOrderException {
         RLock lock = getRLockWithItemDetailCode(purchaseOrder.getItemDetail().getItemDetailCode());
 
         TryCatchTemplate.withLock(lock, 3, 10, () -> {
@@ -55,6 +56,7 @@ public class RedisRaceConditionService {
             log.info("재고 완료 (남은 재고: {})", itemDetail.getStock());
         }, e -> {
             log.error("재고 차감 실패 - {}", e.getMessage(), e);
+            throw new PurchaseOrderException(UNDER_ZERO);
         });
     }
 

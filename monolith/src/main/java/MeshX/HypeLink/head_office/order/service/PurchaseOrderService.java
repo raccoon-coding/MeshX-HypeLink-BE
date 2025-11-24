@@ -103,8 +103,9 @@ public class PurchaseOrderService {
             String itemCode = itemDetail.getItem().getItemCode();
             supplier = verifyStoreItemStock(dto, itemCode);
             Store store = storeRepository.findByMember(supplier);
-//            updateStoreItemStock(store, itemCode, dto.getItemDetailCode(), -1 * dto.getQuantity());
-            kafkaPurchaseService.syncDirectItemDetailStock(store, itemDetail.getId(), -1 * dto.getQuantity());
+            updateStock(store, itemCode, dto.getItemDetailCode(), -1 * dto.getQuantity());
+            updateStoreItemStock(store, dto.getItemDetailCode(), dto.getItemDetailCode(), -1 * dto.getQuantity());
+//            kafkaPurchaseService.syncDirectItemDetailStock(store, itemDetail.getId(), -1 * dto.getQuantity());
         }
 
         orderRepository.createOrder(dto.toEntity(itemDetail, requester, supplier));
@@ -122,7 +123,7 @@ public class PurchaseOrderService {
 
         BaseResponse<ItemDetailUpdateDto> response = webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("/api/store/item/detail/code")
+                        .path("/api/direct/store/item/detail/code")
                         .queryParam("itemDetailCode", dto.getItemDetailCode())
                         .queryParam("storeId", dto.getSupplierStoreId())
                         .queryParam("itemCode", itemCode)
@@ -237,6 +238,12 @@ public class PurchaseOrderService {
         Member headMember = memberRepository.findByEmail("hq@company.com");
         PurchaseOrderState state = PurchaseOrderState.valueOf(dto.getOrderState());
 
+        Store store = storeRepository.findByMember(purchaseOrder.getRequester());
+        String itemCode = purchaseOrder.getItemDetail().getItem().getItemCode();
+        Integer itemDetailId = purchaseOrder.getItemDetail().getId();
+        String itemDetailCode = purchaseOrder.getItemDetail().getItemDetailCode();
+        Integer quantity = purchaseOrder.getQuantity();
+
         if(state.equals(PurchaseOrderState.COMPLETED) && purchaseOrder.getPurchaseOrderState().equals(PurchaseOrderState.REQUESTED)) {
             if(purchaseOrder.getRequester().equals(headMember)) {
                 ItemDetail itemDetail = itemDetailRepository.findById(purchaseOrder.getItemDetail().getId());
@@ -248,12 +255,6 @@ public class PurchaseOrderService {
                 redisRaceConditionService.increaseHeadItemDetailStock(purchaseOrder);
                 kafkaPurchaseService.syncItemDetailStock(itemDetail, purchaseOrder.getQuantity());
             } else {
-                Store store = storeRepository.findByMember(purchaseOrder.getRequester());
-                String itemCode = purchaseOrder.getItemDetail().getItem().getItemCode();
-                Integer itemDetailId = purchaseOrder.getItemDetail().getId();
-                String itemDetailCode = purchaseOrder.getItemDetail().getItemDetailCode();
-                Integer quantity = purchaseOrder.getQuantity();
-
                 updateStock(store, itemCode, itemDetailCode, quantity);
 
                 updateStoreItemStock(store, itemCode, itemDetailCode, quantity);
@@ -262,8 +263,12 @@ public class PurchaseOrderService {
         } else {
             if(purchaseOrder.getPurchaseOrderState().equals(PurchaseOrderState.COMPLETED)) {
                 return PurchaseOrderInfoDetailRes.toDto(purchaseOrder);
+            } else {
+                purchaseOrder.updateOrderDetailStatus(PurchaseDetailStatus.OTHER_CANCELLATION);
+                Store supplier = storeRepository.findByMember(purchaseOrder.getSupplier());
+                updateStock(supplier, itemCode, itemDetailCode, quantity);
+                updateStoreItemStock(supplier, itemCode, itemDetailCode, quantity);
             }
-            purchaseOrder.updateOrderDetailStatus(PurchaseDetailStatus.OTHER_CANCELLATION);
         }
 
         purchaseOrder.updateOrderState(state);

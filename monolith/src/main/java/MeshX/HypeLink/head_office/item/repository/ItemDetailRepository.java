@@ -17,9 +17,14 @@ public interface ItemDetailRepository extends JpaRepository<ItemDetail, Integer>
     Optional<ItemDetail> findByItemDetailCode(String itemDetailCode);
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @QueryHints({
-            @QueryHint(name = "javax.persistence.lock.timeout", value = "5000") // 5초 대기 후 예외 발생
+            @QueryHint(name = "javax.persistence.lock.timeout", value = "5000")
     })
-    @Query("SELECT i FROM ItemDetail i WHERE i.itemDetailCode = :itemDetailCode")
+    @Query("""
+    SELECT id 
+    FROM ItemDetail id 
+    LEFT JOIN FETCH id.item it 
+    WHERE id.itemDetailCode = :itemDetailCode
+    """)
     Optional<ItemDetail> findByItemDetailCodeForUpdateWithLock(@Param("itemDetailCode") String itemDetailCode);
 
     @Query("""
