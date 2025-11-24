@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 public class SyncInitializer {
     private final KafkaItemSyncService kafkaService;
 
-//    @Bean
-//    public ApplicationRunner runSyncOnceAfterStartup() {
-//        return args -> kafkaService.sync();
-//    }
+    @Bean
+    public ApplicationRunner runSyncOnceAfterStartup() {
+        return args -> kafkaService.sync();
+    }
 }
