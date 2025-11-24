@@ -95,6 +95,7 @@ public class MemberCommandService implements MemberCommandUseCase {
                 .storeNumber(store.getStoreNumber())
                 .posCount(store.getPosCount())
                 .storeState(dto.getStoreState())
+                .syncStatus(store.getSyncStatus())
                 .build();
 
         storeCommandPort.save(updatedStore);
