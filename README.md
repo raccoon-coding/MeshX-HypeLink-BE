@@ -1,231 +1,213 @@
-<h1 align="center"> HypeLink (MeshX) </h1>
+<h1 align="center"> HypeLink </h1>
 <div align="center"> 
  <img src="https://github.com/user-attachments/assets/807a5735-e104-4bbe-adf5-b7a47830b0cf" width="400"/>
 </div>
+
 
 > 이름 ‘HypeLink’는 “트렌드를 연결하다 (Hype + Link)”라는 의미를 담고 있습니다.  
 > **브랜드와 소비자, 그리고 본사와 매장을 하나의 링크로 잇는** B2B 오프라인 매장 자동화 관리 플랫폼입니다.
 
 ---
 
-## 🫂 팀원 소개
-<table align="center">
-  <tbody>
-    <tr>
-      <td align="center"><a href="https://github.com/kbw07"><img src="https://github.com/user-attachments/assets/706e1875-8a3d-4d3e-9a19-d344d6866f23" width="100px;" alt=""/><br /><sub><b> 강병욱 </b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/flionme"><img src="https://github.com/user-attachments/assets/08e896f8-c18f-454a-a44a-2337f585e77f" width="100px;" alt=""/><br /><sub><b> 김성인 </b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/David9733"><img src="https://github.com/user-attachments/assets/4d6ad9a1-ac42-4f36-9259-2b988493cf85" width="100px;" alt=""/><br /><sub><b> 이시욱 </b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/raccoon-coding"><img src="https://github.com/user-attachments/assets/90a33761-0bd8-4b73-a12a-1e24f0c5a6a9" width="100px;" alt=""/><br /><sub><b> 최민성 </b></sub></a><br /></td>
-    </tr>
-  </tbody>
-</table>
+## ✒️ 프로젝트 주요 성과 요약
+
+저는 이 프로젝트에서 **상품·재고·발주 도메인, GPS 배송 API, MSA 전환 및 운영 안정화, 성능 테스트 및 장애 격리**를 중심으로  
+백엔드 개발과 운영 전반을 담당했습니다.
+
+- **Monolith → MSA 실시간 전환**을 수행해 서비스 중단 없이 구조를 개선했고  
+- Redis 기반 **재고 동시성 제어**로 성능 병목을 제거했으며  
+- Kafka **SAGA 패턴**으로 서비스 간 데이터 일관성을 확보하고  
+- Kubernetes 운영 환경에서 발생한 **실제 장애를 분석·튜닝**하여  
+
+전체 서비스 가용성 99.4%를 유지했습니다.
 
 ---
+## 🫂 MeshX 팀원 소개 
+<table align="center"> 
+    <tbody> 
+        <tr> 
+            <td align="center"><a href="https://github.com/kbw07"><img src="https://github.com/user-attachments/assets/706e1875-8a3d-4d3e-9a19-d344d6866f23" width="100px;" alt=""/><br /><sub><b> 강병욱 </b></sub></a><br /></td>
+            <td align="center"><a href="https://github.com/flionme"><img src="https://github.com/user-attachments/assets/08e896f8-c18f-454a-a44a-2337f585e77f" width="100px;" alt=""/><br /><sub><b> 김성인 </b></sub></a><br /></td>
+            <td align="center"><a href="https://github.com/David9733"><img src="https://github.com/user-attachments/assets/4d6ad9a1-ac42-4f36-9259-2b988493cf85" width="100px;" alt=""/><br /><sub><b> 이시욱 </b></sub></a><br /></td>
+            <td align="center"><a href="https://github.com/raccoon-coding"><img src="https://github.com/user-attachments/assets/90a33761-0bd8-4b73-a12a-1e24f0c5a6a9" width="100px;" alt=""/><br /><sub><b> 최민성 </b></sub></a><br /></td>
+        </tr> 
+    </tbody> 
+</table>
 
 # 🎬 주문·재고 관리 시스템
 
 ## 🎯 프로젝트 소개
 
-**HypeLink**는 스파(SPA) 브랜드와 오프라인 직영점을 위한 **B2B 통합 매장 관리 솔루션**입니다.  
-본사와 매장을 하나의 네트워크로 연결하여, **주문·재고·물류·매출·고객 데이터**를 실시간으로 통합 관리할 수 있도록 설계되었습니다.
+HypeLink는 SPA/패션 브랜드의 오프라인 매장을 위한 **주문·재고·발주·물류 통합 관리 플랫폼**입니다.
+
+특히 본 프로젝트에서는 **Monolith → MSA로 실시간 전환**하면서도 **서버 구동 시간(Availability) 99.4% 이상 유지**하는 안정적인 구조로 개선했습니다.
+
+---
+### 🔹 솔루션 개요 
+MeshX 팀은 이러한 문제를 해결하기 위해 **GPS 기반 물류 추적, 재고 상태 자동화, 고객 데이터 분석, 실시간 소통 허브**를 통합한 **HypeLink 플랫폼**을 설계했습니다. 
+- 🚚 **실시간 물류 추적**: GPS 기반 배송 경로·도착 예측 실시간 시각화 
+- 📦 **재고·매출 관리 자동화**: 점포별 판매 현황 및 재고 상태 자동 동기화 
+- 📊 **고객 데이터 분석**: POS 결제 기반 연령·패턴 분석 및 타겟 마케팅 
+- 💬 **본사–직영점 커뮤니케이션**: 실시간 소통 및 불만 접수 시스템 
+
+--- 
+## 🧭 프로젝트 시나리오 
+| 구분    | 시나리오 설명 | 기대 효과 | 
+|-------|----------------|------------| 
+| 물류 추적 | 배송 기사의 GPS 데이터를 기반으로 본사 대시보드에서 위치 및 도착 시간 실시간 모니터링 | 지연율 감소, 클레임 감소 | 
+| 재고 관리 | POS 데이터 자동 집계 및 재고 대시보드 제공 | 재고 회전율 향상, 물류비 절감 | 
+| 고객 분석 | 연령·구매 패턴 분석을 통한 맞춤형 프로모션 | 매출 및 재방문율 증가 | 
+| 소통 허브 | 본사-직영점 간 실시간 공지 및 문의 시스템 | 협업 및 현장 대응력 강화 | 
+
+--- 
+## ✨ 핵심 기능 요약 
+| 기능명 | 설명 | 
+|--------|------| 
+| 직영점 계정 관리 | 본사에서 각 매장의 계정 생성 및 권한 제어 | 
+| 멤버십 관리 | 고객 가입·구매 데이터 통합 관리 | 
+| 재고 관리 | 본사 및 직영점 재고 현황 실시간 동기화 | 
+| 판매량 관리 | 매장별·제품별 매출 데이터 자동 집계 | 
+| POS 관리 | 매장 내 결제 및 재고 파악용 POS 연동 | 
+| 매장별 POS 제어 | 각 매장 POS 상태 및 동작 모니터링 | 
+| GPS 물류 추적 | 배송 경로, 기사 위치, 도착 예측 실시간 추적 | 
+| 본사–직영점 실시간 커뮤니케이션 | 공지·요청·이슈 공유 채널 제공 | 
 
 ---
 
-## 📘 프로젝트 개요
+## 🔧 시스템 아키텍처 <img width="9311" alt="MSA_" src="https://github.com/user-attachments/assets/3b30052e-3295-451b-85ab-cdb70c8d27d1" />
 
-### 🔹 배경
-최근 온라인 패션 브랜드들이 오프라인 매장을 확장하며 **옴니채널 전략**을 강화하고 있습니다.  
-그러나 오프라인 운영 과정에서는 다음과 같은 문제들이 자주 발생합니다.
+## ⚙️ CI/CD 파이프라인 문서 
+- <a href="https://github.com/beyond-sw-camp/be17-fin-MeshX-HypeLink-BE/wiki/HypeLink-CI-CD-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EB%AC%B8%EC%84%9C"> CI/CD 파이프라인 문서</a> <br/>
 
-1. 점포별로 분산된 재고로 인해 **본사 차원의 통합 파악 어려움**
-2. 물류 배송 상태를 실시간으로 추적하지 못해 **납기 지연 및 재고 손실 발생**
-3. 매장별 POS·고객 데이터의 **파편화로 의사결정 지연**
-4. 본사와 가맹점 간 **비효율적인 소통 채널 부재**
+# 🌱 제가 담당한 핵심 개발 영역 (Backend)
 
-이러한 문제는 운영 효율성 저하와 매출 감소로 직결됩니다.
+## 1️⃣ 상품·재고·발주 도메인 개발
+- Item, ItemDetail(SKU), Category, Option 도메인 모델링
+- 발주 → 출고 → 배송 → 입고 전체 플로우 API 설계
+- 판매/입고/재고 증감 처리 로직 개발
 
----
-
-### 🔹 솔루션 개요
-MeshX 팀은 이러한 문제를 해결하기 위해  
-**GPS 기반 물류 추적, 재고 상태 자동화, 고객 데이터 분석, 실시간 소통 허브**를 통합한  
-**HypeLink 플랫폼**을 설계했습니다.
-
-- 🚚 **실시간 물류 추적**: GPS 기반 배송 경로·도착 예측 실시간 시각화
-- 📦 **재고·매출 관리 자동화**: 점포별 판매 현황 및 재고 상태 자동 동기화
-- 📊 **고객 데이터 분석**: POS 결제 기반 연령·패턴 분석 및 타겟 마케팅
-- 💬 **본사–직영점 커뮤니케이션**: 실시간 소통 및 불만 접수 시스템
+### ✔ 해결한 문제
+- DB Lock 기반 재고 처리 시 **성능 저하**
+- 콜드 스타트 + 트래픽 증가로 인한 **DB Connection Pool 고갈 문제**  
+  → **Redis RLock + 이벤트 기반 구조로 안정화**
+- 하나의 기능에 트래픽이 몰린다면 다른 기능들한테도 장애가 전파
+  → **MSA로 서버 구조를 전환하여 서버 안정화**
 
 ---
 
-## 🧭 프로젝트 시나리오
+## 2️⃣ Redis 기반 재고 동시성 제어 (속도 문제 해결)
+- `RLock("itemCode:" + itemDetailCode)` 구조로 SKU 단위 Lock 적용
+- TTL + Watchdog 기반 Lock 유지
+- MSA 환경에서 발생한 경쟁 상태를 제거하여  
+  **재고 API의 성능을 Redis 도입 전 대비 크게 향상**
 
-| 구분 | 시나리오 설명 | 기대 효과 |
-|------|----------------|------------|
-| 물류 추적 | 배송 기사의 GPS 데이터를 기반으로 본사 대시보드에서 위치 및 도착 시간 실시간 모니터링 | 지연율 감소, 클레임 감소 |
-| 재고 관리 | POS 데이터 자동 집계 및 재고 대시보드 제공 | 재고 회전율 향상, 물류비 절감 |
-| 고객 분석 | 연령·구매 패턴 분석을 통한 맞춤형 프로모션 | 매출 및 재방문율 증가 |
-| 소통 허브 | 본사-직영점 간 실시간 공지 및 문의 시스템 | 협업 및 현장 대응력 강화 |
+✔ 성능 비교 자료(그래프 & 영상) 첨부 예정
+- Redis 도입 전:
+  > Lock 경합, 요청 지연, Connection Pool 소진 발생 </br>
+  > 평균 응답시간 : 약 2.6초 </br>
+  > 최대 응답시간 : 약 11초
+  
+  https://github.com/user-attachments/assets/62108401-4078-4676-9fed-851f7af59fc4
 
----
 
-## ✨ 핵심 기능 요약
+- Redis 도입 후:
+  > TPS 향상, 지연 제거, 안정적 재고 흐름 </br>
+  > 평균 응답시간 : 약 1.2초 </br>
+  > 최대 응답시간 : 약 5.9초
 
-| 기능명 | 설명 |
-|--------|------|
-| 직영점 계정 관리 | 본사에서 각 매장의 계정 생성 및 권한 제어 |
-| 멤버십 관리 | 고객 가입·구매 데이터 통합 관리 |
-| 재고 관리 | 본사 및 직영점 재고 현황 실시간 동기화 |
-| 판매량 관리 | 매장별·제품별 매출 데이터 자동 집계 |
-| POS 관리 | 매장 내 결제 및 재고 파악용 POS 연동 |
-| 매장별 POS 제어 | 각 매장 POS 상태 및 동작 모니터링 |
-| GPS 물류 추적 | 배송 경로, 기사 위치, 도착 예측 실시간 추적 |
-| 본사–직영점 실시간 커뮤니케이션 | 공지·요청·이슈 공유 채널 제공 |
+  https://github.com/user-attachments/assets/42aacf2b-b3e9-4181-9d0d-05422e7dc3dd
 
 ---
 
-## 💚 Front-end
-- <a href="https://github.com/beyond-sw-camp/be17-fin-MeshX-HypeLink-FE">프론트엔드 깃허브 바로가기</a>
-<details>
- 
-<summary>POS기 작동 영상 </summary>
-<div markdown="1">
+## 3️⃣ Kafka 기반 SAGA 패턴 (보상 트랜잭션)
 
-## POS기 결제 
-![pos_gif](https://github.com/user-attachments/assets/086e6512-c76e-430a-8061-11aacb365e50)
+### 문제 상황
+Monolith → MSA로 분리되면서
+- Item 데이터가 **두 시스템에 모두 존재해야** 했고
+- 단 한 곳만 실패해도 데이터 불일치가 발생하는 구조였음
 
-## POS기 회원 결제
-![포스기 회원 결제](https://github.com/user-attachments/assets/637100dd-1409-4bb3-90f7-d89f04595ca8)
+### 해결 전략
+Kafka 기반 SAGA 패턴 적용  
 
-## POS기 결제 내역
-![포스기 결제내역](https://github.com/user-attachments/assets/7ee47852-b185-4ad7-8424-19bc6b10fbf1)
+item.created → monolith.item.sync → success/failure
 
-## POS기 공지사항
-![포스기 공지사항](https://github.com/user-attachments/assets/2a66ebf2-1099-422f-9600-cc927fe540d9)
-
-</div>
-</details>
-
-<details>
-<summary>관리자 페이지 </summary>
-<div markdown="1">
-
-## 가맹점 로그인
-![가맹점 로그인 화면](https://github.com/user-attachments/assets/f02bf0e3-1915-4739-a63b-775359e4bb64)
-
-## 본사 로그인
-![본사 관리자](https://github.com/user-attachments/assets/3d5406f6-9176-4b58-b819-286af2814787)
-
-## 서브관리자 로그인
-![서브관리자 로그인](https://github.com/user-attachments/assets/cbcf828b-a845-4e3f-bb4e-94b2aca982d8)
-
-## 웹소켓 메신저
-![웹소켓 메신저](https://github.com/user-attachments/assets/32b0c983-74b9-49bb-b9e4-d12f7ef0cc47)
-
-## 사용자 추가
-![사용자 추가](https://github.com/user-attachments/assets/a020ee21-5df4-4ace-98d4-4789e54c43c3)
-
-## 본사 공지사항 작성
-![공지사항 작성](https://github.com/user-attachments/assets/f0b91cb2-6663-4988-a1bb-8a6d81788f06)
-
-## AS/고장 접수처리
-![AS](https://github.com/user-attachments/assets/1c9672ca-952e-4b9a-8f49-81fa4743d3b6)
-
-## 고객분석
-![고객분석](https://github.com/user-attachments/assets/5c9d7b18-90b7-4ba4-a467-02744d73388d)
-
-## 매출 관리
-![매출관리](https://github.com/user-attachments/assets/3f8ccace-f9ce-4a5c-95ad-3c3f7db3873a)
-
-## 상품 관리
-![상품관리 02](https://github.com/user-attachments/assets/5cb08fb9-ff69-401c-8d30-bf529e0514d7)
-
-## 재고 관리
-![재고관리](https://github.com/user-attachments/assets/d0866639-79ef-4521-88fe-4306829088b2)
-
-## 전체 배송 추적
-![전체배송추척품질다운](https://github.com/user-attachments/assets/dbcec5e0-5382-4e53-9e7b-87846d9f0b49)
-
-## 창고 재고 관리
-![창고재고관리](https://github.com/user-attachments/assets/e90ba0c6-55c7-4b8e-b4e4-355224bdc313)
-
-## 쿠폰 관리
-![쿠폰관리 동영상](https://github.com/user-attachments/assets/937cf216-b828-4f9d-b085-d2a11c945a9f)
-
-## 통합 분석
-![통합분석 동영상](https://github.com/user-attachments/assets/cddc865a-d81d-44cc-ac2d-43803f4b4ea5)
-
-## 프로모션 관리
-![프로모션관리](https://github.com/user-attachments/assets/53bdd4b0-0f5a-40f3-95b5-2b917ecbd227)
-
-</div>
-</details>
+↳ failure 시 item.rollback 보상 트랜잭션 실행
 
 
-## 🔧 시스템 아키텍처
-- <a href="https://github.com/beyond-sw-camp/be17-fin-MeshX-HypeLink-BE/blob/raccoon/swagger/doc/%EC%8B%9C%EC%8A%A4%ED%85%9C%20%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98.png">시스템 아키텍처 문서 보기</a>
+✔ Monolith·MSA 간 강결합 제거  
+✔ 데이터 일관성 유지  
+✔ 재고/상품 데이터 불일치 문제 해결
 
-## 📝 SWAGGER API
+---
 
-- [스웨거 API 문서보기 (PDF)](https://github.com/beyond-sw-camp/be17-fin-MeshX-HypeLink-BE/blob/main/doc/Swagger.pdf)  
-- [스웨거 UI 접속하기](http://3.36.70.161:8080/swagger-ui/index.html)
+## 4️⃣ GPS 배송 추적 API 개발
+- 배송기사 GPS 좌표 저장/조회 API
+- 배송 상태(출발/배송중/도착)와 프로세스 연동
+- 출고–배송–입고 단계 사이의 실시간 연동
+
+---
+
+## 5️⃣ MSA 전환 및 Kubernetes 운영 안정화
+
+### 🔹 Monolith → MSA 실시간 전환 과정
+- 서비스 중단 없이 점진적 전환 (Zero-downtime philosophy)
+- 데이터 동기화 & 이벤트 흐름 적용
+- Core 도메인(Item/Stock)부터 분리
+
+### 🔹 서버 Availability 99.4% 유지
+전환 과정에서 다음 요소 최적화:
+- Eureka 등록 문제 수정
+- LivenessProbe/ReadinessProbe 튜닝
+- Pod CPU Limit/Request 조정
+- CI/CD 구조 변경 (코드 수정이 일어난 서버만 무중단 배포 진행)
+
+→ **실제 평균 가용성: 99.4% 유지**
+
+<img width="1440" height="780" alt="서버 다운타임" src="https://github.com/user-attachments/assets/e8f3f04f-66b1-4164-9809-ff15cd43a496" />
+
+---
+
+### 🔹 해결한 Kubernetes 운영 문제
+| 문제                           | 해결                                        |
+|------------------------------|-------------------------------------------|
+| Gateway CPU/Thread 부족        | Pod CPU Limit 조정                          |
+| Eureka 등록 문제                 | Pod IP로 Eureka 등록하도록 수정                   |
+| Probe 실패(Liveness/Readiness) | 초기 Delay & Threshold 최적화                  |
+| Traffic 라우팅 지연               | K8s DNS propagation 개선                    |
+| 무중단 배포 수정                    | 코드 수정이 발생한 코드만 무중단 배포하도록 Jenkins 파이프라인 수정 |
 
 
 ---
 
-## 🛠 기술 스택
+# 🎥 테스트 & 장애 격리 자료
 
-### ✔️Frontend
-![Vue.js](https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
-![Pinia](https://img.shields.io/badge/Pinia-ffd859?style=for-the-badge&logoColor=black)
-![Socket.js](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socketdotio&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![Axios](https://img.shields.io/badge/Axios-671ddf?style=for-the-badge&logo=axios&logoColor=white)
-![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+### 📌 장애 격리 테스트
+- 특정 서비스 장애 발생 시 전체 서비스 영향 최소화
+- Kafka 소비 장애 시 DLQ 처리
+- Redis 장애 시 fallback 전략
 
-### ✔️Backend
-![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)
-![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=white)
-![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
-![QueryDSL](https://img.shields.io/badge/QueryDSL-4479A1?style=for-the-badge&logoColor=white)
-![Lombok](https://img.shields.io/badge/Lombok-BC4125?style=for-the-badge&logoColor=white)
-
-### ✔️Database
-![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-
-### ✔️Infra
-![AWS S3](https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)
-![Kaniko](https://img.shields.io/badge/Kaniko-2A2E35?style=for-the-badge&logo=docker&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+  https://github.com/user-attachments/assets/90079a1b-8663-41e3-a785-d4427da4f1f6
 
 ---
 
-## 🔧 기술적 선택과 설계 배경
+# 📎 전체 레포지토리
 
-### ⚙️ 아키텍처 설계
-- **Spring Boot MVC** 패턴 기반으로 서비스, 도메인, 컨트롤러를 명확히 분리
-- **JWT + Spring Security** 조합을 통한 안전한 인증/인가 구조
-- **Kaniko + Jenkins + Kubernetes** 기반 CI/CD 파이프라인 구축으로 자동 배포 구현
+- **Monolith 브랜치 (Main)**  
+  https://github.com/raccoon-coding/MeshX-HypeLink-BE
 
-### 📡 데이터 처리
-- **QueryDSL**을 통한 동적 쿼리 최적화 및 매장별 매출/재고 통계 조회
-
-### ☁️ 인프라 전략
-- **MariaDB** 로 데이터 안정성 확보
-- **S3**를 통한 이미지 처리
-- **K8s 기반 Blue-Green 배포**로 무중단 배포 및 안정성 확보
+- **Frontend Repository**  
+  https://github.com/raccoon-coding/MeshX-HypeLink-FE
 
 ---
 
-## 🚀 서비스 목표
+# 🎯 프로젝트를 통해 성장한 점
 
-> “HypeLink는 오프라인 매장 관리의 복잡함을 데이터 중심으로 단순화한다.”
+- **MSA per-DB 환경으로 실시간 전환을 수행하며 99.4% Availability 유지**
+- Redis 기반 재고 트랜잭션 개선으로 **고부하에서도 일관된 처리 보장**
+- Kafka SAGA로 **서비스 간 데이터 일관성 확보**
+- Kubernetes 운영 환경에서 발생하는 **실제 장애를 분석·튜닝할 수 있는 역량 확보**
+- Monolith–MSA 혼용 환경에서 **엔드투엔드 백엔드 구조 전반을 이해하고 개선**
 
-본사와 매장이 실시간으로 연결되고,  
-모든 주문·재고·물류 정보가 투명하게 공유되는 환경을 구축함으로써  
-**비용 절감, 매출 성장, 협업 효율성**을 동시에 실현하는 것이 목표입니다.
+---
+
+# 👋 문의 또는 코드 리뷰 환영합니다!
