@@ -193,10 +193,10 @@ item.created → monolith.item.sync → success/failure
 # 📎 전체 레포지토리
 
 - **MSA 브랜치 (Swagger/MSA)**  
-  https://github.com/beyond-sw-camp/be17-fin-MeshX-HypeLink-BE/tree/Swagger/MSA
+  https://github.com/raccoon-coding/MeshX-HypeLink-BE/tree/Swagger/MSA
 
 - **Frontend Repository**  
-  https://github.com/beyond-sw-camp/be17-fin-MeshX-HypeLink-FE
+  https://github.com/raccoon-coding/MeshX-HypeLink-FE
 
 ---
 
