@@ -1,15 +1,28 @@
-<h1 align="center"> HypeLink (MeshX) — Backend Developer Edition </h1>
+<h1 align="center"> HypeLink </h1>
 <div align="center"> 
  <img src="https://github.com/user-attachments/assets/807a5735-e104-4bbe-adf5-b7a47830b0cf" width="400"/>
 </div>
 
+
 > 이름 ‘HypeLink’는 “트렌드를 연결하다 (Hype + Link)”라는 의미를 담고 있습니다.  
-> **브랜드와 소비자, 그리고 본사와 매장을 하나의 링크로 잇는** B2B 오프라인 매장 자동화 관리 플랫폼입니다.  
-> 이 프로젝트에서 저는 **상품/재고/발주 도메인, Redis 기반 재고 동시성 제어, Kafka SAGA 패턴, GPS 배송 API, MSA 전환 및 운영 안정화, 성능 테스트 및 장애 격리**를 중심으로 개발했습니다.
+> **브랜드와 소비자, 그리고 본사와 매장을 하나의 링크로 잇는** B2B 오프라인 매장 자동화 관리 플랫폼입니다.
 
 ---
 
-## 🫂 팀원 소개 
+## ✒️ 프로젝트 주요 성과 요약
+
+저는 이 프로젝트에서 **상품·재고·발주 도메인, GPS 배송 API, MSA 전환 및 운영 안정화, 성능 테스트 및 장애 격리**를 중심으로  
+백엔드 개발과 운영 전반을 담당했습니다.
+
+- **Monolith → MSA 실시간 전환**을 수행해 서비스 중단 없이 구조를 개선했고  
+- Redis 기반 **재고 동시성 제어**로 성능 병목을 제거했으며  
+- Kafka **SAGA 패턴**으로 서비스 간 데이터 일관성을 확보하고  
+- Kubernetes 운영 환경에서 발생한 **실제 장애를 분석·튜닝**하여  
+
+전체 서비스 가용성 99.4%를 유지했습니다.
+
+---
+## 🫂 MeshX 팀원 소개 
 <table align="center"> 
     <tbody> 
         <tr> 
@@ -25,11 +38,11 @@
 
 ## 🎯 프로젝트 소개
 
-HypeLink는 SPA/패션 브랜드의 오프라인 매장을 위한 **주문·재고·발주·물류 통합 관리 플랫폼**입니다.  
-특히 본 프로젝트에서는 **Monolith → MSA로 실시간 전환**하면서도  
-**서버 구동 시간(Availability) 99.6% 이상 유지**하는 안정적인 구조로 개선했습니다.
----
+HypeLink는 SPA/패션 브랜드의 오프라인 매장을 위한 **주문·재고·발주·물류 통합 관리 플랫폼**입니다.
 
+특히 본 프로젝트에서는 **Monolith → MSA로 실시간 전환**하면서도 **서버 구동 시간(Availability) 99.4% 이상 유지**하는 안정적인 구조로 개선했습니다.
+
+---
 ### 🔹 솔루션 개요 
 MeshX 팀은 이러한 문제를 해결하기 위해 **GPS 기반 물류 추적, 재고 상태 자동화, 고객 데이터 분석, 실시간 소통 허브**를 통합한 **HypeLink 플랫폼**을 설계했습니다. 
 - 🚚 **실시간 물류 추적**: GPS 기반 배송 경로·도착 예측 실시간 시각화 
@@ -83,7 +96,7 @@ MeshX 팀은 이러한 문제를 해결하기 위해 **GPS 기반 물류 추적,
 ---
 
 ## 2️⃣ Redis 기반 재고 동시성 제어 (속도 문제 해결)
-- `RLock("itemCode:" + itemDetailId)` 구조로 SKU 단위 Lock 적용
+- `RLock("itemCode:" + itemDetailCode)` 구조로 SKU 단위 Lock 적용
 - TTL + Watchdog 기반 Lock 유지
 - MSA 환경에서 발생한 경쟁 상태를 제거하여  
   **재고 API의 성능을 Redis 도입 전 대비 크게 향상**
@@ -141,14 +154,14 @@ item.created → monolith.item.sync → success/failure
 - 데이터 동기화 & 이벤트 흐름 적용
 - Core 도메인(Item/Stock)부터 분리
 
-### 🔹 서버 Availability 99.6% 유지
+### 🔹 서버 Availability 99.4% 유지
 전환 과정에서 다음 요소 최적화:
 - Eureka 등록 문제 수정
 - LivenessProbe/ReadinessProbe 튜닝
 - Pod CPU Limit/Request 조정
 - CI/CD 구조 변경 (코드 수정이 일어난 서버만 무중단 배포 진행)
 
-→ **실제 평균 가용성: 99.6% 유지**
+→ **실제 평균 가용성: 99.4% 유지**
 
 <img width="1440" height="780" alt="서버 다운타임" src="https://github.com/user-attachments/assets/e8f3f04f-66b1-4164-9809-ff15cd43a496" />
 
@@ -189,7 +202,7 @@ item.created → monolith.item.sync → success/failure
 
 # 🎯 프로젝트를 통해 성장한 점
 
-- **MSA per-DB 환경으로 실시간 전환을 수행하며 99.6% Availability 유지**
+- **MSA per-DB 환경으로 실시간 전환을 수행하며 99.4% Availability 유지**
 - Redis 기반 재고 트랜잭션 개선으로 **고부하에서도 일관된 처리 보장**
 - Kafka SAGA로 **서비스 간 데이터 일관성 확보**
 - Kubernetes 운영 환경에서 발생하는 **실제 장애를 분석·튜닝할 수 있는 역량 확보**
